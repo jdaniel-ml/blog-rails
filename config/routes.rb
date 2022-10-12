@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :users do
-    resources :relationships, only: [ :create ]
+    get "relationships/create", to: "relationships#create"
   end
   resources :relationships, only: [ :destroy ]
   get "articles/user/:user_id", to: "articles#from_author"
