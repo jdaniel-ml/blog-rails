@@ -5,7 +5,10 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def show; end
+  def show
+    @user = User.find(params[:id])
+    @rel = @user.followers.find_by(follower: current_user)
+  end
 
   def new
     @article = Article.new

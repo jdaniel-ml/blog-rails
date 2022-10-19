@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+  resources :users do
+    get "relationships/create", to: "relationships#create"
+  end
+  resources :relationships, only: [ :destroy ]
   get "articles/user/:user_id", to: "articles#from_author"
   # get "/articles", to: "articles#index"
   # get "/articles/:id", to: "articles#show"

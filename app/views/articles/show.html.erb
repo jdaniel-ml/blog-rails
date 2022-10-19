@@ -1,5 +1,5 @@
 <h1><%= @article.title %></h1>
-
+<p class="text-secondary"> Author: <%= @user.email%></p>
 <p><%= @article.body %></p>
 
 <ul>
@@ -9,9 +9,15 @@
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul>
-
-<h2>Comments</h2>
-<%= render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<% if @rel.present?%>
+  <h2>Comments</h2>
+  <%= render @article.comments %>
+  <h2>Add a comment:</h2>
+  <%= render 'comments/form' %>
+  <% link_to "Unfollow", relationship_path(@rel.id), method: :delete, class: 'btn btn-danger' %>
+<% elsif user_signed_in? %>
+  <p>Remember to follow the author to be able to comment</p>
+  <%= link_to "Follow", user_relationships_create_path(@user), method: :post, class: 'btn btn-danger' unless @rel.present? %>
+<% else %>
+    <p style="color:red">Remember login</p>
+<%end%>

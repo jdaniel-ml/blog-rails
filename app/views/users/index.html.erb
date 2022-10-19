@@ -1,0 +1,12 @@
+<div class="large-container center-block">
+  <h1>Users</h1>
+  <ul>
+    <% @users.each do |user| %>
+      <div class="card padding margin-top" style="max-width:500px">
+          <li>
+            <%= link_to user.email, user %>
+          </li>
+      </div>
+    <% end %>
+  </ul>
+</div>
