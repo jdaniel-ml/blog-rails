@@ -16,13 +16,6 @@ class ArticlesController < ApplicationController
                                             body: params[:article][:body],
                                             status: params[:article][:status])
     redirect_to @article
-    #Article.new(article_params)
-
-  #   if @article.save
-  #     redirect_to @article
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
   end
 
   def edit; end
